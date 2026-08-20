@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>BG Letter System – BOI Investment Services</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+</head>
+<body>
+
+  <header>
+    <div class="header-inner">
+      <div class="header-logo">
+        <span class="logo-mark">BOI</span>
+        <div>
+          <div class="header-title">Investment Services</div>
+          <div class="header-sub">Bank Guarantee Letter System</div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+
+      <!-- Step 1: Choose letter type -->
+      <section class="card" id="step-type">
+        <div class="step-label">Step 1</div>
+        <h2>Select letter type</h2>
+        <div class="type-grid">
+          <button class="type-btn" data-type="new" onclick="selectType('new')">
+            <i class="material-icons type-icon">description</i>
+            <span class="type-name">New BG</span>
+            <span class="type-desc">Obtaining a bank guarantee on imports</span>
+          </button>
+          <button class="type-btn" data-type="extension" onclick="selectType('extension')">
+            <i class="material-icons type-icon">assignment</i>
+            <span class="type-name">BG Extension</span>
+            <span class="type-desc">Extending validity period of existing BGs</span>
+          </button>
+          <button class="type-btn" data-type="releasing" onclick="selectType('releasing')">
+            <i class="material-icons type-icon">check_circle</i>
+            <span class="type-name">BG Releasing</span>
+            <span class="type-desc">Release of bank guarantee to Sri Lanka Customs</span>
+          </button>
+        </div>
+      </section>
+
+      <!-- Step 2: Fill the form -->
+      <section class="card hidden" id="step-form">
+        <div class="step-label">Step 2</div>
+        <h2 id="form-title">Fill in details</h2>
+
+        <!--  NEW BG FORM  -->
+        <div id="form-new" class="hidden">
+          <div class="form-section">
+            <h3>Letter &amp; company details</h3>
+            <div class="form-row two-col">
+              <div class="field">
+                <label>Date</label>
+                <input type="date" id="n-date" />
+              </div>
+              <div class="field">
+                <label>Reference number</label>
+                <input type="text" id="n-refno" placeholder="e.g. IS/BGL/26/S220/049" />
+              </div>
+            </div>
+            <div class="field">
+              <label>Company name</label>
+              <input type="text" id="n-company" placeholder="e.g. M/S. WATERFRONT PROPERTIES PVT LTD" />
+            </div>
+            <div class="field">
+              <label>CUSDEC number</label>
+              <input type="text" id="n-cusdec" placeholder="e.g. S-47601" />
+            </div>
+            <div class="field">
+              <label>Reason</label>
+              <input type="text" id="n-reason" placeholder="e.g. Pending Ministry of Finance Approval For SSCL Exemption" />
+            </div>
+            <div class="field">
+              <label>Taxes &amp; levies under BG</label>
+              <input type="text" id="n-taxes" placeholder="e.g. SSCL" />
+            </div>
+            <div class="field">
+              <label>BG number</label>
+              <input type="text" id="n-bgno" placeholder="e.g. PCC/CBG/2025/31" />
+            </div>
+            <div class="form-row two-col">
+              <div class="field">
+                <label>BG amount (Rs.)</label>
+                <input type="text" id="n-bgamount" placeholder="e.g. 85,000.00" />
+              </div>
+              <div class="field">
+                <label>BG expiry date</label>
+                <input type="date" id="n-bgexpiry" />
+              </div>
+            </div>
+            <div class="field">
+              <label>Remarks</label>
+              <input type="text" id="n-remarks" placeholder="Optional" />
+            </div>
+            <div class="field">
+              <label>Category / type of enterprise</label>
+              <input type="text" id="n-category" placeholder="e.g. Sec17 - maiden approval" />
+            </div>
+            <div class="field">
+              <label>Purpose / reason of bank guarantee <span class="field-note">(for letter body)</span></label>
+              <input type="text" id="n-purpose" placeholder="e.g. Pending Supplementary Agreement" />
+            </div>
+            <div class="field">
+              <label>Items imported <span class="field-note">(for letter body)</span></label>
+              <textarea id="n-items" rows="2" placeholder="Describe the imported items"></textarea>
+            </div>
+          </div>
+        </div>
+
+        <!--  BG EXTENSION FORM  -->
+        <div id="form-extension" class="hidden">
+          <div class="form-section">
+            <h3>Letter &amp; company details</h3>
+            <div class="form-row two-col">
+              <div class="field">
+                <label>Date</label>
+                <input type="date" id="e-date" />
+              </div>
+              <div class="field">
+                <label>Reference number</label>
+                <input type="text" id="e-refno" placeholder="e.g. IS/BGEX/26/C160/028" />
+              </div>
+            </div>
+            <div class="field">
+              <label>Company name</label>
+              <input type="text" id="e-company" placeholder="e.g. M/S. COLOMBO WEST INTERNATIONAL TERMINAL" />
+            </div>
+            <div class="field">
+              <label>BG extension period <span class="field-note"></span></label>
+              <input type="text" id="e-extperiod" placeholder="e.g. up to 15th May 2026" />
+            </div>
+          </div>
+
+          <div class="form-section">
+            <h3>CUSDEC / BG rows</h3>
+            <p class="hint">Each row = one CUSDEC. Each will be logged as a separate row in Google Sheets.</p>
+            <div class="row-wrap" id="ext-rows"></div>
+            <button class="btn-add-row" onclick="addExtRow()">+ Add CUSDEC row</button>
+          </div>
+        </div>
+
+        <!--  BG RELEASING FORM  -->
+        <div id="form-releasing" class="hidden">
+          <div class="form-section">
+            <h3>Letter &amp; company details</h3>
+            <div class="form-row two-col">
+              <div class="field">
+                <label>Date</label>
+                <input type="date" id="r-date" />
+              </div>
+              <div class="field">
+                <label>Reference number</label>
+                <input type="text" id="r-refno" placeholder="e.g. IS/BGRL/26/0000/001" />
+              </div>
+            </div>
+            <div class="field">
+              <label>Company name</label>
+              <input type="text" id="r-company" placeholder="e.g. M/S. WATERFRONT PROPERTIES PVT LTD" />
+            </div>
+            <div class="field">
+              <label>Reason for release</label>
+              <select id="r-reason">
+                <option value="">Select reason</option>
+                <option value="Supplementary Agreement">Supplementary Agreement</option>
+                <option value="Engineering Approval">Engineering Approval</option>
+                <option value="Relevant BOI Clearance">Relevant BOI Clearance</option>
+              </select>
+            </div>
+            <div class="field">
+              <label>Bank Guarantee Reference</label>
+              <input type="text" id="r-bgref" placeholder="e.g. BG/BOI/2026/001" />
+            </div>
+            <div class="field">
+              <label>Material Description</label>
+              <textarea id="r-material" rows="2" placeholder="Describe the materials or goods imported"></textarea>
+            </div>
+          </div>
+
+          <div class="form-section">
+            <h3>CUSDEC / BG rows</h3>
+            <p class="hint">Each row = one CUSDEC. Each will be logged as a separate row in Google Sheets.</p>
+            <div class="row-wrap" id="rel-rows"></div>
+            <button class="btn-add-row" onclick="addRelRow()">+ Add CUSDEC row</button>
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button class="btn-secondary" onclick="goToStart()">← Back</button>
+          <button class="btn-primary" onclick="generateLetter()">
+            <span id="btn-label">Generate letter (.docx)</span>
+          </button>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <div class="toast hidden" id="toast"></div>
+
+  <footer>
+    <p>&copy; Copyright @shehanjay 2026</p>
+  </footer>
+
+  <script src="https://unpkg.com/pizzip@3.1.4/dist/pizzip.js"></script>
+  <script src="https://unpkg.com/pizzip@3.1.4/dist/pizzip-utils.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+  <script src="https://unpkg.com/docxtemplater@3.49.0/build/docxtemplater.js"></script>
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
