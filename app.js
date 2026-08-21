@@ -31,7 +31,6 @@ function selectType(type) {
 /*
    DYNAMIC ROWS — Extension
    Columns: CUSDEC No. | BG No. | Prior Expiry Date | Amount (Rs.)
-   (matches BG Extensions Register columns)
  */
 function addExtRow() {
   const wrap = document.getElementById('ext-rows');
@@ -69,7 +68,6 @@ function addExtRow() {
 /* 
    DYNAMIC ROWS — Releasing
    Columns: CUSDEC No. | CUSDEC Date | BG Amount (Rs.) & Validity Date | Amount (Rs.)
-   (matches BG Releasing Register columns)
  */
 function addRelRow() {
   const wrap = document.getElementById('rel-rows');

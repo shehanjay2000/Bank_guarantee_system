@@ -85,7 +85,7 @@ select { cursor: pointer; }
 
 /* ── Footer ── */
 footer { background: #003087; color: #fff; padding: 1.5rem 2rem; text-align: center; font-size: 13px; margin-top: 2rem; }
-footer p { margin: 0; opacity: 0.85; }
+footer p { margin: 0; opacity: 0.55; }
 
 @media (max-width: 600px) {
   .type-grid { grid-template-columns: 1fr; }
