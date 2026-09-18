@@ -40,14 +40,16 @@ function addExtRow() {
     const tbl = document.createElement('table');
     tbl.className = 'row-table';
     tbl.innerHTML = `
-      <thead><tr>
-        <th>#</th>
-        <th>CUSDEC No.</th>
-        <th>BG No.</th>
-        <th>Prior expiry date</th>
-        <th>Amount (Rs.)</th>
-        <th></th>
-      </tr></thead>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>CUSDEC No.</th>
+          <th>BG No.</th>
+          <th>Prior expiry date</th>
+          <th>Amount (Rs.)</th>
+          <th></th>
+        </tr>
+      </thead>
       <tbody></tbody>`;
     wrap.appendChild(tbl);
   }

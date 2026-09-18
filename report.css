@@ -1,0 +1,228 @@
+/* ── Report page specific styles ── */
+
+.header-nav { margin-left: auto; }
+.header-logo {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.header-back-link {
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.nav-link {
+  color: rgba(255,255,255,0.85);
+  text-decoration: none;
+  font-size: 13px;
+  padding: 6px 14px;
+  border: 1px solid rgba(255,255,255,0.3);
+  border-radius: 6px;
+  transition: all 0.15s;
+}
+.nav-link:hover { background: rgba(255,255,255,0.15); color: #fff; }
+.nav-link .material-icons {
+  font-size: 16px;
+  vertical-align: middle;
+}
+
+/* ── Search ── */
+.search-row { display: flex; gap: 1rem; align-items: flex-start; position: relative; }
+.search-row .field { flex: 1; }
+.search-btn { margin-top: 22px; }
+.suggestions-box {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: #fff;
+  border: 1.5px solid #d0d5e8;
+  border-top: none;
+  border-radius: 0 0 7px 7px;
+  z-index: 100;
+  max-height: 200px;
+  overflow-y: auto;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+.suggestion-item {
+  padding: 10px 14px;
+  cursor: pointer;
+  font-size: 13px;
+  color: #1a1a2e;
+  border-bottom: 1px solid #f0f2f5;
+}
+.suggestion-item:hover { background: #edf1fb; color: #003087; }
+.suggestion-item:last-child { border-bottom: none; }
+
+/* ── Year range filter ── */
+#year-filter-panel,
+#month-filter-panel {
+  transition: all 0.2s ease;
+}
+.filter-bar {
+  display: flex;
+  align-items: flex-end;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+}
+.filter-label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #003087;
+  white-space: nowrap;
+  align-self: flex-end;
+  padding-bottom: 9px;
+}
+.filter-fields {
+  display: flex;
+  align-items: flex-end;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+.filter-fields .field {
+  margin-bottom: 0;
+}
+.filter-sep {
+  font-size: 18px;
+  color: #aaa;
+  padding-bottom: 8px;
+}
+.filter-reset {
+  padding: 9px 16px;
+  font-size: 13px;
+  white-space: nowrap;
+  margin-bottom: 0;
+}
+.filter-active-label {
+  font-size: 12px;
+  color: #1a7a4a;
+  font-weight: 600;
+  background: #eaf5ef;
+  padding: 4px 12px;
+  border-radius: 20px;
+  align-self: flex-end;
+  margin-bottom: 6px;
+}
+
+
+/* ── Summary cards ── */
+#report-output {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+.metric-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 1.25rem 1.5rem;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+  border-top: 4px solid transparent;
+  min-height: 120px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.metric-card.blue  { border-color: #003087; }
+.metric-card.green { border-color: #1a7a4a; }
+.metric-card.orange{ border-color: #e67e22; }
+.metric-card.red   { border-color: #c0392b; }
+.metric-label { font-size: 12px; color: #888; margin-bottom: 6px; font-weight: 500; }
+.metric-value { font-size: 28px; font-weight: 700; color: #1a1a2e; }
+.metric-sub   { font-size: 12px; color: #aaa; margin-top: 4px; }
+
+/* ── Section ── */
+.section-header { margin-bottom: 1rem; }
+.section-title { font-size: 15px; font-weight: 600; color: #003087; display: flex; align-items: center; gap: 8px; }
+.section-title .material-icons {
+  font-size: 18px;
+  color: #003087;
+}
+
+/* ── Table ── */
+.table-wrap { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: 13px; min-width: 600px; }
+thead { background: #f4f6fb; }
+th {
+  padding: 10px 12px;
+  text-align: left;
+  font-weight: 600;
+  color: #555;
+  font-size: 12px;
+  border-bottom: 2px solid #e0e4ef;
+  white-space: nowrap;
+}
+td {
+  padding: 10px 12px;
+  border-bottom: 1px solid #f0f2f5;
+  color: #1a1a2e;
+  vertical-align: top;
+}
+tr:last-child td { border-bottom: none; }
+tr:hover td { background: #fafbff; }
+
+.badge {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 600;
+}
+.badge-yes    { background: #e8f5e9; color: #1a7a4a; }
+.badge-no     { background: #fdecea; color: #c0392b; }
+.badge-active { background: #e8edf7; color: #003087; }
+
+/* ── Empty state ── */
+.empty-state {
+  text-align: center;
+  padding: 4rem 2rem;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+}
+.download-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+.download-btn .material-icons {
+  font-size: 18px;
+  vertical-align: middle;
+}
+.empty-icon { font-size: 48px; margin-bottom: 1rem; }
+.empty-text { font-size: 18px; font-weight: 600; color: #003087; margin-bottom: 0.5rem; }
+.empty-sub  { font-size: 14px; color: #888; }
+
+/* ── Company header in report ── */
+.company-header {
+  background: #fff;
+  border-radius: 12px;
+  padding: 1.5rem 2rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+  border-left: 5px solid #003087;
+}
+.company-name-label { font-size: 12px; color: #888; margin-bottom: 4px; }
+.company-name-value { font-size: 22px; font-weight: 700; color: #003087; }
+
+@media (max-width: 700px) {
+  .summary-grid { grid-template-columns: repeat(2,1fr); }
+  .search-row { flex-direction: column; }
+  .search-btn { margin-top: 0; width: 100%; }
+  .filter-bar,
+  .filter-fields { align-items: stretch; }
+  .filter-label,
+  .filter-active-label { align-self: auto; }
+  .filter-fields .field,
+  .filter-reset { flex: 1 1 130px; }
+  .filter-sep { align-self: center; padding-bottom: 0; }
+  .header-back-link { margin-left: 0; }
+}

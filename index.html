@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>BG Letter System – BOI Investor Services</title>
   <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="notif.css" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
 </head>
+
 <body>
 
   <header>
@@ -17,8 +20,34 @@
           <div class="header-title">Investor Services</div>
           <div class="header-sub">Bank Guarantee Letter System</div>
         </div>
+        <div class="header-actions">
+          <!-- Notification bell -->
+          <div class="notif-wrap" id="notif-wrap">
+            <button class="notif-btn" id="notif-btn" onclick="toggleNotifDropdown()" title="Expiring BGs">
+              <i class="material-icons" aria-hidden="true">notifications</i>
+              <span class="notif-badge hidden" id="notif-badge">0</span>
+            </button>
+            <!-- Dropdown -->
+            <div class="notif-dropdown hidden" id="notif-dropdown">
+              <div class="notif-dropdown-header">
+                <span class="notif-dropdown-title"><i class="material-icons" aria-hidden="true">warning</i> Expiring
+                  within 30 days</span>
+                <button class="notif-close" onclick="toggleNotifDropdown()" aria-label="Close notifications"><i
+                    class="material-icons" aria-hidden="true">close</i></button>
+              </div>
+              <div id="notif-list" class="notif-list">
+                <div class="notif-loading">Checking expiries...</div>
+              </div>
+            </div>
+          </div>
+
+          <a href="report.html"
+            style="margin-left:auto;color:rgba(255,255,255,0.85);text-decoration:none;font-size:13px;padding:6px 14px;border:1px solid rgba(255,255,255,0.3);border-radius:6px;">
+            <i class="material-icons" style="font-size:16px;vertical-align:middle;">analytics</i>
+            Reports
+          </a>
+        </div>
       </div>
-    </div>
   </header>
 
   <main>
@@ -76,7 +105,8 @@
             </div>
             <div class="field">
               <label>Reason</label>
-              <input type="text" id="n-reason" placeholder="e.g. Pending Ministry of Finance Approval For SSCL Exemption" />
+              <input type="text" id="n-reason"
+                placeholder="e.g. Pending Ministry of Finance Approval For SSCL Exemption" />
             </div>
             <div class="field">
               <label>Taxes &amp; levies under BG</label>
@@ -215,5 +245,7 @@
   <script src="https://unpkg.com/docxtemplater@3.49.0/build/docxtemplater.js"></script>
   <script src="config.js"></script>
   <script src="app.js"></script>
+  <script src="notif.js"></script>
 </body>
+
 </html>

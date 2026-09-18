@@ -6,6 +6,10 @@ body { font-family: 'Segoe UI', Arial, sans-serif; font-size: 15px; background: 
 header { background: #003087; color: #fff; padding: 0 2rem; height: 64px; display: flex; align-items: center; box-shadow: 0 2px 8px rgba(0,0,0,0.18); }
 .header-inner { width: 100%; max-width: 900px; margin: 0 auto; }
 .header-logo { display: flex; align-items: center; gap: 14px; }
+.header-actions { margin-left: auto; display: flex; align-items: center; gap: 8px; }
+.notif-wrap { position: relative; display: flex; align-items: center; }
+.notif-btn { width: 32px; height: 32px; display: inline-flex; align-items: center; justify-content: center; padding: 0; border: 1px solid rgba(255,255,255,0.3); border-radius: 6px; background: transparent; color: #fff; font-size: 16px; line-height: 1; cursor: pointer; }
+.header-actions > a { margin-left: 0 !important; height: 32px; display: inline-flex; align-items: center; gap: 4px; }
 .logo-mark { background: #FFD700; color: #003087; font-weight: 800; font-size: 15px; padding: 6px 10px; border-radius: 6px; letter-spacing: 1px; }
 .header-title { font-size: 16px; font-weight: 600; }
 .header-sub { font-size: 12px; opacity: 0.75; margin-top: 1px; }

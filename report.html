@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BG Report – BOI Investor Services</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="report.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js"></script>
+</head>
+
+<body>
+
+    <header>
+        <div class="header-inner">
+            <div class="header-logo">
+                <span class="logo-mark">BOI</span>
+                <div>
+                    <div class="header-title">Investor Services</div>
+                    <div class="header-sub">Bank Guarantee Report</div>
+                </div>
+                <a href="index.html" class="nav-link header-back-link">
+                    <i class="material-icons">arrow_back</i>
+                    Letter System
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+
+            <!-- Search -->
+            <section class="card">
+                <div class="step-label">Search</div>
+                <h2>Company report</h2>
+                <div class="search-row">
+                    <div class="field" style="flex:1">
+                        <label for="search-input">Company name</label>
+                        <input type="text" id="search-input" placeholder="Start typing company name..."
+                            oninput="onSearchInput()" autocomplete="off" />
+                        <div class="suggestions-box hidden" id="suggestions"></div>
+                    </div>
+                    <button class="btn-primary search-btn" onclick="searchCompany()">Search</button>
+                </div>
+            </section>
+
+            <!-- Year Range Filter -->
+            <section class="card hidden" id="year-filter-panel">
+                <div class="filter-bar">
+                    <span class="filter-label"><i class="material-icons">date_range</i>Filter by Year Range</span>
+                    <div class="filter-fields">
+                        <div class="field">
+                            <label for="year-from">Year From</label>
+                            <select id="year-from">
+                                <option value="all">All years</option>
+                            </select>
+                        </div>
+                        <span class="filter-sep">→</span>
+                        <div class="field">
+                            <label for="year-to">Year To</label>
+                            <select id="year-to">
+                                <option value="all">All years</option>
+                            </select>
+                        </div>
+                        <button class="btn-secondary filter-reset" onclick="resetYearFilter()">Reset</button>
+                    </div>
+                    <span class="filter-active-label hidden" id="filter-active-label"></span>
+                </div>
+            </section>
+
+            <!-- Month Filter -->
+            <section class="card hidden" id="month-filter-panel">
+                <div class="filter-bar">
+                    <span class="filter-label"><i class="material-icons">date_range</i>Filter by month</span>
+                    <div class="filter-fields">
+                        <div class="field">
+                            <label for="month-select">Month</label>
+                            <select id="month-select">
+                                <option value="">All months</option>
+                            </select>
+                        </div>
+                        <button class="btn-secondary filter-reset" onclick="resetMonthFilter()">Reset</button>
+                    </div>
+                    <span class="filter-active-label hidden" id="month-active-label"></span>
+                </div>
+            </section>
+
+            <!-- Report output -->
+            <div id="report-output" class="hidden">
+
+                <!-- Summary cards -->
+                <div class="summary-grid" id="summary-cards"></div>
+
+                <!-- BG Register detail -->
+                <section class="card" id="section-new">
+                    <div class="section-header">
+                        <h3 class="section-title">
+                            <i class="material-icons">description</i> Bank guarantees obtained
+                        </h3>
+                    </div>
+                    <div class="table-wrap">
+                        <table id="table-new">
+                            <thead>
+                                <tr>
+                                    <th>No.</th>
+                                    <th>Date</th>
+                                    <th>Ref No.</th>
+                                    <th>CUSDEC No.</th>
+                                    <th>Reason</th>
+                                    <th>Taxes & Levies</th>
+                                    <th>BG No.</th>
+                                    <th>Amount & Expiry</th>
+                                    <th>Remarks</th>
+                                    <th>Extended</th>
+                                    <th>Released Date</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tbody-new"></tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- Extensions detail -->
+                <section class="card" id="section-ext">
+                    <div class="section-header">
+                        <h3 class="section-title">
+                            <i class="material-icons">assignment</i> BG extensions
+                        </h3>
+                    </div>
+                    <div class="table-wrap">
+                        <table id="table-ext">
+                            <thead>
+                                <tr>
+                                    <th>No.</th>
+                                    <th>Date</th>
+                                    <th>Ref No.</th>
+                                    <th>CUSDEC No.</th>
+                                    <th>Extension Period</th>
+                                    <th>BG No.</th>
+                                    <th>Amount (Rs.)</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tbody-ext"></tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- Releasing detail -->
+                <section class="card" id="section-rel">
+                    <div class="section-header">
+                        <h3 class="section-title">
+                            <i class="material-icons">check_circle</i> BG releases
+                        </h3>
+                    </div>
+                    <div class="table-wrap">
+                        <table id="table-rel">
+                            <thead>
+                                <tr>
+                                    <th>No.</th>
+                                    <th>Date</th>
+                                    <th>Ref No.</th>
+                                    <th>CUSDEC No.</th>
+                                    <th>CUSDEC Date</th>
+                                    <th>BG Amount & Validity</th>
+                                    <th>Amount (Rs.)</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tbody-rel"></tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- Download button -->
+                <div style="display:flex; justify-content:flex-end; margin-bottom:2rem;">
+                    <button class="btn-primary download-btn" onclick="downloadPDF()">
+                        <i class="material-icons">download</i>
+                        Download PDF report
+                    </button>
+                </div>
+
+            </div>
+
+            <!-- Empty state -->
+            <div class="empty-state hidden" id="empty-state">
+                <div class="empty-icon"><i class="material-icons">search</i></div>
+                <div class="empty-text">No records found for this company.</div>
+                <div class="empty-sub">Check the spelling or try a different name.</div>
+            </div>
+
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; Copyright @shehanjay 2026</p>
+    </footer>
+
+    <div class="toast hidden" id="toast"></div>
+
+    <script src="config.js"></script>
+    <script src="report.js"></script>
+</body>
+
+</html>
