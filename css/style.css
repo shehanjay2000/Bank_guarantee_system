@@ -1,6 +1,14 @@
 /* ── Reset & base ── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: 'Segoe UI', Arial, sans-serif; font-size: 15px; background: #f0f2f5; color: #1a1a2e; min-height: 100vh; }
+body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  font-size: 15px;
+  background:
+    linear-gradient(rgba(240, 242, 245, 0.82), rgba(240, 242, 245, 0.82)),
+    url('../assets/images/images (1).png') center/cover no-repeat fixed;
+  color: #1a1a2e;
+  min-height: 100vh;
+}
 
 /* ── Header ── */
 header { background: #003087; color: #fff; padding: 0 2rem; height: 64px; display: flex; align-items: center; box-shadow: 0 2px 8px rgba(0,0,0,0.18); }
@@ -19,7 +27,13 @@ main { padding: 2rem 1rem 4rem; }
 .container { max-width: 900px; margin: 0 auto; display: flex; flex-direction: column; gap: 1.5rem; }
 
 /* ── Card ── */
-.card { background: #fff; border-radius: 12px; padding: 2rem; box-shadow: 0 1px 4px rgba(0,0,0,0.08); }
+.card {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+  backdrop-filter: blur(2px);
+}
 .card h2 { font-size: 18px; font-weight: 600; margin-bottom: 1.25rem; color: #003087; }
 .card h3 { font-size: 12px; font-weight: 700; color: #888; text-transform: uppercase; letter-spacing: 0.6px; margin: 1.5rem 0 0.85rem; padding-bottom: 0.4rem; border-bottom: 1px solid #eef0f5; }
 .step-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: #003087; background: #e8edf7; display: inline-block; padding: 3px 10px; border-radius: 20px; margin-bottom: 0.6rem; }

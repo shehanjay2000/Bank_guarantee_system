@@ -96,8 +96,7 @@ function fetchSheetData(tabName) {
   return load(1);
 }
 
-// Exact the number from a string
-
+// Extract the number from a string
 function parseAmount(str){
     // Remove Rs., commas, spaces — then grab the first number found
    if(!str) return 0;
@@ -176,9 +175,7 @@ function resetYearFilter() {
   applyFilters();
 }
 
- /* ─────────────────────────────────────────
-   MONTH HELPERS
-───────────────────────────────────────── */
+ /*  MONTH HELPERS */
 function parseDateToMonthYear(dateStr) {
   if (!dateStr) return null;
   const s = dateStr.toString().trim();
@@ -240,10 +237,10 @@ function resetMonthFilter() {
   applyFilters();
 }
 
-/* ─────────────────────────────────────────
+/* 
    APPLY BOTH FILTERS TOGETHER
-   Year range first → month on top
-───────────────────────────────────────── */
+   Year range first --> month on top
+*/
 function applyFilters() {
   const from  = document.getElementById('year-from').value;
   const to    = document.getElementById('year-to').value;
@@ -306,9 +303,7 @@ function applyFilters() {
   }
 }
 
-/* ─────────────────────────────────────────
-   BUILD COMPANY LIST FOR AUTOCOMPLETE
-───────────────────────────────────────── */
+/*  BUILD COMPANY LIST FOR AUTOCOMPLETE  */
 function normalizeCompanyName(name) {
     return String(name ?? '')
         .trim()
@@ -328,9 +323,7 @@ function buildCompanyList() {
     companyList = Array.from(names.values()).sort((a, b) => a.localeCompare(b));
 }
 
-/* ─────────────────────────────────────────
-   CLEAR REPORT STATE
-───────────────────────────────────────── */
+/*  CLEAR REPORT STATE  */
 function clearReportState() {
     currentCompany = '';
     activeFromYear = 'all';
@@ -351,9 +344,7 @@ function clearReportState() {
     document.getElementById('section-rel').style.display = 'none';
 }
 
-/* ─────────────────────────────────────────
-   AUTOCOMPLETE
-───────────────────────────────────────── */
+/*  AUTOCOMPLETE  */
 function onSearchInput() {
     const val = document.getElementById('search-input').value.trim();
     const box = document.getElementById('suggestions');
@@ -391,9 +382,7 @@ document.addEventListener('click', (e) => {
     }
 });
 
-/* ─────────────────────────────────────────
-   SEARCH COMPANY
-───────────────────────────────────────── */
+/*  SEARCH COMPANY  */
 function searchCompany() {
     const query = document.getElementById('search-input').value.trim();
     if (!query) {
@@ -455,9 +444,7 @@ function searchCompany() {
     document.getElementById('report-output').scrollIntoView({ behavior: 'smooth' });
 }
 
-/* ─────────────────────────────────────────
-   SUMMARY CARDS
-───────────────────────────────────────── */
+/*  SUMMARY CARDS  */
 function renderSummaryCards(newRows, extRows, relRows) {
     const totalBGs  = newRows.length;
     const totalExts = extRows.length;
@@ -497,9 +484,7 @@ function renderSummaryCards(newRows, extRows, relRows) {
         </div>`;
 }
 
-/* ─────────────────────────────────────────
-   TABLE RENDERERS
-───────────────────────────────────────── */
+/*  TABLE RENDERERS  */
 
 // BG Register: 0:No | 1:Company | 2:Date | 3:Ref | 4:CUSDEC |
 // 5:Reason | 6:Taxes | 7:BG No | 8:Amount&Expiry | 9:Remarks | 10:Extended Y/N | 11:Releasing Date
@@ -570,10 +555,8 @@ function badge(val, yes, no) {
     : `<span class="badge badge-no">${no}</span>`;
 }
 
-/* ─────────────────────────────────────────
-   PDF DOWNLOAD
-   Respects both active year and month filters
-───────────────────────────────────────── */
+/*  PDF DOWNLOAD  */
+/*   Respects both active year and month filters   */
 function downloadPDF() {
   const { jsPDF } = window.jspdf;
   const doc   = new jsPDF({ orientation: 'landscape', unit: 'mm', format: 'a4' });
@@ -718,9 +701,7 @@ function downloadPDF() {
   showToast('PDF downloaded ✓');
 }
 
-/* ─────────────────────────────────────────
-   TOAST
-───────────────────────────────────────── */
+/*  TOAST  */
 function showToast(msg) {
   const t = document.getElementById('toast');
   t.textContent = msg;
