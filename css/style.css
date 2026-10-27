@@ -8,6 +8,8 @@ body {
     url('../assets/images/images (1).png') center/cover no-repeat fixed;
   color: #1a1a2e;
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 /* ── Header ── */
@@ -18,12 +20,14 @@ header { background: #003087; color: #fff; padding: 0 2rem; height: 64px; displa
 .notif-wrap { position: relative; display: flex; align-items: center; }
 .notif-btn { width: 32px; height: 32px; display: inline-flex; align-items: center; justify-content: center; padding: 0; border: 1px solid rgba(255,255,255,0.3); border-radius: 6px; background: transparent; color: #fff; font-size: 16px; line-height: 1; cursor: pointer; }
 .header-actions > a { margin-left: 0 !important; height: 32px; display: inline-flex; align-items: center; gap: 4px; }
+.auth-logout { height: 32px; padding: 0 12px; border: 1px solid rgba(255,255,255,0.3); border-radius: 6px; background: transparent; color: rgba(255,255,255,0.9); font: inherit; font-size: 12px; cursor: pointer; }
+.auth-logout:hover { background: rgba(255,255,255,0.1); }
 .logo-mark { background: #FFD700; color: #003087; font-weight: 800; font-size: 15px; padding: 6px 10px; border-radius: 6px; letter-spacing: 1px; }
 .header-title { font-size: 16px; font-weight: 600; }
 .header-sub { font-size: 12px; opacity: 0.75; margin-top: 1px; }
 
 /* ── Layout ── */
-main { padding: 2rem 1rem 4rem; }
+main { flex: 1 0 auto; padding: 2rem 1rem 4rem; }
 .container { max-width: 900px; margin: 0 auto; display: flex; flex-direction: column; gap: 1.5rem; }
 
 /* ── Card ── */

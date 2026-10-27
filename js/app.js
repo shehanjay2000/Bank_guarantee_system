@@ -103,6 +103,15 @@ function addRelRow() {
   tbody.appendChild(tr);
 }
 
+
+function rendeNotifcationsFromthesheet(result) {
+  if (!result || !result.data || result.data.length < 2)
+    return;
+
+  const rows = result.data
+}
+
+
 function removeRow(btn) {
   const tr  = btn.closest('tr');
   const tbd = tr.closest('tbody');
